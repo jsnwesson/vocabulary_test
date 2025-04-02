@@ -133,11 +133,9 @@ Option 2: Installing from source (Only if you must)
 
 .. code:: bash
 
-    $ git clone https://github.com/tasdikrahman/vocabulary.git
-    $ cd vocabulary/
-    $ pip install -r requirements.txt
-    $ python setup.py install
-
+    git clone git@github.com:jsnwesson/vocabulary_test.git
+    cd vocabulary/
+    pip3 install -r requirements.txt
 
 Demo
 ~~~~
