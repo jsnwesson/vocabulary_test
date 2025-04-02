@@ -204,7 +204,7 @@ class Vocabulary(object):
             try:
                 tuc_content = json_obj["tuc"]  # "tuc_content" is a "list"
             except KeyError:
-                return False
+                return True
             synonyms_list = Vocabulary.__parse_content(tuc_content, "phrase")
             if synonyms_list:
                 # return synonyms_list
@@ -284,8 +284,6 @@ class Vocabulary(object):
         idx = 0
         for key in json_obj.keys():
             antonyms = json_obj[key].get('ant', False)
-            if not antonyms:
-                continue
 
             for antonym in antonyms:
                 if visited.get(antonym, False):
@@ -340,7 +338,7 @@ class Vocabulary(object):
         if json_obj:
             examples_list = json_obj["list"]
             for i, example in enumerate(examples_list):
-                if example["thumbs_up"] > example["thumbs_down"]:
+                if example["thumbs_up"] < example["thumbs_down"]:
                     word_examples[i] = example["example"].replace("\r", "").replace("\n", "")
             if word_examples:
                 # reforamatting "word_examples" using "__clean_dict()"
@@ -398,5 +396,4 @@ class Vocabulary(object):
             # return json.dumps(json_obj)
             # return json_obj
             return Response().respond(json_obj, format)
-        else:
-            return False
+
