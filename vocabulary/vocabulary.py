@@ -181,9 +181,6 @@ class Vocabulary(object):
             meanings_list = Vocabulary.__parse_content(tuc_content, "meanings")
             return Response().respond(meanings_list, format)
             # print(meanings_list)
-            # return json.dumps(meanings_list)
-        else:
-            return False
 
     @staticmethod
     def synonym(phrase, source_lang="en", dest_lang="en", format="json"):
@@ -375,7 +372,6 @@ class Vocabulary(object):
                 # return json_obj
                 return Response().respond(json_obj, format)
             else:  # python3
-                # return json.loads(json.dumps(json_obj, ensure_ascii=False))
                 return Response().respond(json_obj, format)
         else:
             return False
@@ -396,4 +392,5 @@ class Vocabulary(object):
             # return json.dumps(json_obj)
             # return json_obj
             return Response().respond(json_obj, format)
-
+        # TODO: we have a client who received an empty object. Reference other methods for what
+        # to return if there's no object. Write test to make sure this works.
