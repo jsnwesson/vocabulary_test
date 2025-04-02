@@ -177,10 +177,9 @@ class Vocabulary(object):
                 tuc_content = json_obj["tuc"]  # "tuc_content" is a "list"
             except KeyError:
                 return False
-            '''get meanings'''
-            meanings_list = Vocabulary.__parse_content(tuc_content, "meanings")
+            '''get definitions'''
+            meanings_list = Vocabulary.__parse_content(tuc_content, "definitions")
             return Response().respond(meanings_list, format)
-            # print(meanings_list)
 
     @staticmethod
     def synonym(phrase, source_lang="en", dest_lang="en", format="json"):
@@ -316,7 +315,7 @@ class Vocabulary(object):
         for idx, obj in enumerate(json_obj):
             text = obj.get('partOfSpeech', None)
             example = obj.get('text', None)
-            result.append({"seq": idx, "text": text, "example": example})
+            result.append({"seq": index, "text": text, "example": example})
 
         return Response().respond(result, format)
 
